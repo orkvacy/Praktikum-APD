@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="boo"/>
+        <attribute name="authors" value="asus"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2024-09-18 08:56:28 PM"/>
+        <attribute name="created" value="YXN1cztMQVBUT1AtVVVISUZTT1Q7MjAyNC0wOS0xNzswMjowNDoxOCBBTTsyODUz"/>
+        <attribute name="edited" value="YXN1cztMQVBUT1AtVVVISUZTT1Q7MjAyNC0wOS0xODswMzo0MTozOCBBTTs1OzI5NzA="/>
+        <attribute name="edited" value="a3JvdGE7REVTS1RPUC1TNUVUVlZSOzIwMjQtMDktMTg7MDg6NTY6MjggUE07MzszMDgw"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nama, statusAktif" type="String" array="False" size=""/>
+            <declare name="umur" type="Integer" array="False" size=""/>
+            <declare name="tinggiBadan, beratBadan, jumlahNumerik" type="Real" array="False" size=""/>
+            <declare name="statusMahasiswa" type="Boolean" array="False" size=""/>
+            <output expression="&quot;Masukkan Nama: &quot;" newline="True"/>
+            <input variable="nama"/>
+            <output expression="&quot;Masukkan Umur: &quot;" newline="True"/>
+            <input variable="umur"/>
+            <output expression="&quot;Masukkan Tinggi Badan (dalam cm): &quot;" newline="True"/>
+            <input variable="tinggiBadan"/>
+            <output expression="&quot;Masukkan Berat Badan (dalam kg): &quot;" newline="True"/>
+            <input variable="beratBadan"/>
+            <output expression="&quot;Apakah Anda Mahasiswa Aktif? (True/False): &quot;" newline="True"/>
+            <input variable="statusMahasiswa"/>
+            <if expression="statusMahasiswa == True">
+                <then>
+                    <assign variable="statusAktif" expression="&quot;Aktif&quot;"/>
+                </then>
+                <else>
+                    <assign variable="statusAktif" expression="&quot;Tidak Aktif&quot;"/>
+                </else>
+            </if>
+            <assign variable="umur" expression="umur"/>
+            <assign variable="tinggiBadan" expression="tinggiBadan"/>
+            <assign variable="beratBadan" expression="beratBadan"/>
+            <assign variable="jumlahNumerik" expression="0"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <if expression="i == 0">
+                    <then>
+                        <assign variable="jumlahNumerik" expression="jumlahNumerik + umur"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="i == 1">
+                    <then>
+                        <assign variable="jumlahNumerik" expression="jumlahNumerik + tinggiBadan"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="i == 2">
+                    <then>
+                        <assign variable="jumlahNumerik" expression="jumlahNumerik + beratBadan"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+            <output expression="&quot;=========================&quot;" newline="True"/>
+            <output expression="&quot;     Bio Data Anda     &quot;" newline="True"/>
+            <output expression="&quot;=========================&quot;" newline="True"/>
+            <output expression="&quot;Nama: &quot; &amp; nama" newline="True"/>
+            <output expression="&quot;Umur: &quot; &amp; umur" newline="True"/>
+            <output expression="&quot;Tinggi Badan: &quot; &amp; tinggiBadan &amp; &quot; cm&quot;" newline="True"/>
+            <output expression="&quot;Berat Badan: &quot; &amp; beratBadan &amp; &quot; kg&quot;" newline="True"/>
+            <output expression="&quot;Mahasiswa Aktif: &quot; &amp; statusAktif" newline="True"/>
+            <output expression="&quot;=========================&quot;" newline="True"/>
+            <output expression="&quot;Total variabel numerik (int/float): &quot; &amp; jumlahNumerik" newline="True"/>
+            <output expression="&quot;=========================&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
