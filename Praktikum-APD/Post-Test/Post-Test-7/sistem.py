@@ -61,9 +61,9 @@ def userMenu(username):
     while True:
         try:
             clear()
-            print("=" * 7, f"Hi {username} Apa yang ingin anda lakukan?", "=" * 7,"\n1. Lihat Produk\n2. Beli Produk\n3. History Pembelian\n0. Back")
+            print("=" * 7, f"Hi {username} Apa yang ingin anda lakukan?", "=" * 7,"\n1. Lihat Produk\n2. Beli Produk\n3. History Pembelian\n4. Total Belanja\n0. Back")
             
-            pilih = input("Pilih menu (1-4): ")
+            pilih = input("Pilih menu : ")
             
             if pilih == "1":
                 showPr()
@@ -72,6 +72,8 @@ def userMenu(username):
                 buy(username)
             elif pilih == "3":
                 riwayatUser(username)
+            elif pilih == "4":
+                lihatTotalBelanja(username)
             elif pilih == "0":
                 break
             else:
@@ -189,7 +191,7 @@ def terjual():
         if listTerjual:
             df = pd.DataFrame(listTerjual)
             df['Produk'] = df['produk_id'].map(lambda x: produk.get(x, {}).get('nama', 'Produk Dihapus'))
-            print(df[['id', 'username', 'Produk', 'jumlah', 'total']].to_string(index=False))
+            print(df[['id', 'username', 'Produk', 'jumlah', 'total']].to_string(index=False, formatters={'total': lambda x: f"{x:,}"}))
         else:
             print("Belum ada Transaksi")
     except Exception as e:
@@ -214,4 +216,22 @@ def riwayatUser(username):
             print("Belum ada pembelian.")
     except Exception as e:
         print(f"Terjadi kesalahan: {str(e)}")
+    input("\nTekan Enter untuk melanjutkan...")
+
+def totalBelanja(index, username):
+    if index >= len(listTerjual):
+        return 0
+    transaksi = listTerjual[index]
+    totalR = totalBelanja(index + 1, username)
+    
+    if transaksi['username'] == username: #menambahkan jika username sesuai
+        return transaksi['total'] + totalR
+    
+    return totalR
+
+def lihatTotalBelanja(username):
+    clear()
+    print(f"=" * 7, f"TOTAL BELANJA {username}", "=" * 7)
+    total = totalBelanja(0, username)
+    print(f"\nTotal belanja Anda: Rp{total:,}")
     input("\nTekan Enter untuk melanjutkan...")

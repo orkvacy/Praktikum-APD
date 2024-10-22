@@ -11,7 +11,11 @@ def login():
     password = input("Password: ")
     
     if username in users and users[username]["password"] == password:
-        return username, users[username]["password"], users[username]["role"]
+        return {
+            "username": username,
+            "password": users[username]["password"],
+            "role": users[username]["role"]
+        }
     
     print("Username atau password salah! Kembali ke menu utama.")
     input("Tekan Enter untuk melanjutkan...")
